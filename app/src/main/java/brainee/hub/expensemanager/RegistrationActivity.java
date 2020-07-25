@@ -2,6 +2,7 @@ package brainee.hub.expensemanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -46,6 +47,13 @@ public class RegistrationActivity extends AppCompatActivity {
                     return;
                 }
 
+            }
+        });
+
+        signin_here.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
             }
         });
 
