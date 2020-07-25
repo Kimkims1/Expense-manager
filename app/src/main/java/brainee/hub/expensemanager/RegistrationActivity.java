@@ -7,11 +7,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText email, password;
-    private Button login;
+    private Button register;
+    private TextView signin_here;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +25,12 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void registration() {
 
-        email = findViewById(R.id.email_id);
-        password = findViewById(R.id.password_id);
-        login = findViewById(R.id.button_login);
+        email = findViewById(R.id.email_id_reg);
+        password = findViewById(R.id.password_id_reg);
+        register = findViewById(R.id.button_register);
+        signin_here = findViewById(R.id.sign_in_here);
 
-        login.setOnClickListener(new View.OnClickListener() {
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String m_email = email.getText().toString().trim();
