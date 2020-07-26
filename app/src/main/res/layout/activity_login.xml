@@ -75,6 +75,13 @@
                 android:text="Don't have account? Sign Up"
                 android:textColor="@android:color/black" />
 
+            <ProgressBar
+                android:id="@+id/login_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_marginTop="20sp" />
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

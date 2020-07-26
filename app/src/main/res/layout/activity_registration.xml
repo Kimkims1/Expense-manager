@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".RegistrationActivity">
 
     <ScrollView
@@ -32,27 +32,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:padding="15dp"
                 android:background="@drawable/edittext_background"
-                android:hint="Enter your email" />
+                android:hint="Enter your email"
+                android:padding="15dp" />
 
             <EditText
                 android:id="@+id/password_id_reg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:padding="15dp"
-                android:inputType="textPassword"
                 android:background="@drawable/edittext_background"
-                android:hint="Enter your password" />
+                android:hint="Enter your password"
+                android:inputType="textPassword"
+                android:padding="15dp" />
 
             <Button
-                android:background="@drawable/edittext_background"
                 android:id="@+id/button_register"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:background="@drawable/edittext_background"
                 android:text="Register" />
 
             <TextView
@@ -64,6 +64,13 @@
                 android:fontFamily="@font/roboto"
                 android:text="Already having account? Login"
                 android:textColor="@android:color/black" />
+
+            <ProgressBar
+                android:id="@+id/register_progress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_marginTop="20sp" />
 
         </LinearLayout>
     </ScrollView>
