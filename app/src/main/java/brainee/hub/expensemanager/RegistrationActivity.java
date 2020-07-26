@@ -71,7 +71,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     progressBar.setVisibility(View.INVISIBLE);
                                     Toast.makeText(RegistrationActivity.this, "Account created..", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(RegistrationActivity.this, DashboardActivity.class));
+                                    startActivity(new Intent(RegistrationActivity.this, HomeActivity.class));
                                 } else {
                                     Toast.makeText(RegistrationActivity.this, "Account creation failed: " + task.getException(), Toast.LENGTH_SHORT).show();
                                 }
