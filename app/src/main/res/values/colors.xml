@@ -6,4 +6,8 @@
 
     <color name="colorStart">#022B27</color>
     <color name="colorEnd">#03DAC5</color>
+
+    <color name="colorDashboard">#263238</color>
+    <color name="colorIncome">#3E2723</color>
+    <color name="colorExpense">#212121</color>
 </resources>
