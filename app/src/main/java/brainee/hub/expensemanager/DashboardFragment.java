@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
@@ -65,6 +66,8 @@ public class DashboardFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
         main_btn = view.findViewById(R.id.main_ft_plus_btn);
         expense_btn = view.findViewById(R.id.expense_ft_btn);
