@@ -149,6 +149,9 @@ public class DashboardFragment extends Fragment {
                 if (TextUtils.isEmpty(amount)) {
                     amount_editText.setError("Field required...");
                 }
+
+               int ourAmount = Integer.parseInt(amount);
+                
             }
         });
     }
