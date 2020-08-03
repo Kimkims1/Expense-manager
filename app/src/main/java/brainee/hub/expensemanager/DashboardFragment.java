@@ -66,6 +66,8 @@ public class DashboardFragment extends Fragment {
         main_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                addData();
                 if (isOpen) {
                     income_btn.startAnimation(fadeClose);
                     expense_btn.startAnimation(fadeClose);
@@ -78,7 +80,7 @@ public class DashboardFragment extends Fragment {
                     expense_txt.setClickable(false);
                     isOpen = false;
 
-                }else {
+                } else {
                     income_btn.startAnimation(fadeOpen);
                     expense_btn.startAnimation(fadeOpen);
                     income_btn.setClickable(true);
@@ -92,5 +94,9 @@ public class DashboardFragment extends Fragment {
                 }
             }
         });
+    }
+
+    private void addData() {
+
     }
 }
