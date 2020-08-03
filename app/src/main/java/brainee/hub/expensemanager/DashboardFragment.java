@@ -98,5 +98,18 @@ public class DashboardFragment extends Fragment {
 
     private void addData() {
 
+        income_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        expense_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }
