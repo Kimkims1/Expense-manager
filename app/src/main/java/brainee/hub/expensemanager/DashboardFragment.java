@@ -2,57 +2,44 @@ package brainee.hub.expensemanager;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DashboardFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+
 public class DashboardFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    //Flaoting btn
+    private FloatingActionButton income_btn;
+    private FloatingActionButton expense_btn;
+    private FloatingActionButton main_btn;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    //TextViews
+    private TextView income_txt, expense_txt;
+
+    //isOpen
+    private Boolean isOpen = false;
+
+    private Animation fadeOpen, fadeClose;
 
     public DashboardFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DashboardFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static DashboardFragment newInstance(String param1, String param2) {
-        DashboardFragment fragment = new DashboardFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -60,5 +47,50 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_dashboard, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        main_btn = view.findViewById(R.id.main_ft_plus_btn);
+        expense_btn = view.findViewById(R.id.expense_ft_btn);
+        income_btn = view.findViewById(R.id.income_ft_btn);
+
+        expense_txt = view.findViewById(R.id.expense_ft_text);
+        income_txt = view.findViewById(R.id.income_ft_text);
+
+        fadeClose = AnimationUtils.loadAnimation(getContext(), R.anim.fade_close);
+        fadeOpen = AnimationUtils.loadAnimation(getContext(), R.anim.fade_open);
+
+        main_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isOpen) {
+                    income_btn.startAnimation(fadeClose);
+                    expense_btn.startAnimation(fadeClose);
+                    income_btn.setClickable(false);
+                    expense_btn.setClickable(false);
+
+                    income_txt.startAnimation(fadeClose);
+                    expense_txt.startAnimation(fadeClose);
+                    income_txt.setClickable(false);
+                    expense_txt.setClickable(false);
+                    isOpen = false;
+
+                }else {
+                    income_btn.startAnimation(fadeOpen);
+                    expense_btn.startAnimation(fadeOpen);
+                    income_btn.setClickable(true);
+                    expense_btn.setClickable(true);
+
+                    income_txt.startAnimation(fadeOpen);
+                    expense_txt.startAnimation(fadeOpen);
+                    income_txt.setClickable(true);
+                    expense_txt.setClickable(true);
+                    isOpen = true;
+                }
+            }
+        });
     }
 }

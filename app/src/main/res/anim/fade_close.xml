@@ -12,4 +12,10 @@
         android:toYScale="0.0"
         android:interpolator="@android:anim/linear_interpolator"/>
 
+    <alpha
+        android:duration="500"
+        android:fromAlpha="1.0"
+        android:interpolator="@android:anim/accelerate_interpolator"
+        android:toAlpha="0.0" />
+
 </set>
