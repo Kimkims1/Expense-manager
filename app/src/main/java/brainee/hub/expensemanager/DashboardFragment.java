@@ -63,6 +63,9 @@ public class DashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+
         main_btn = view.findViewById(R.id.main_ft_plus_btn);
         expense_btn = view.findViewById(R.id.expense_ft_btn);
         income_btn = view.findViewById(R.id.income_ft_btn);
