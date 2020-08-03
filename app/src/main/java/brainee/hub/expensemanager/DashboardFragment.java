@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class DashboardFragment extends Fragment {
@@ -34,6 +36,10 @@ public class DashboardFragment extends Fragment {
     private Boolean isOpen = false;
 
     private Animation fadeOpen, fadeClose;
+
+    //Firebase
+    private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firestore;
 
     public DashboardFragment() {
         // Required empty public constructor
