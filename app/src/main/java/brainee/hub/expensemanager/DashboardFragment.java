@@ -1,16 +1,20 @@
 package brainee.hub.expensemanager;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -109,6 +113,42 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+    }
+
+    private void incomeDataInsert() {
+        AlertDialog.Builder mydialog = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view = inflater.inflate(R.layout.custom_layout_data_insert, null);
+        mydialog.setView(view);
+        AlertDialog dialog = mydialog.create();
+
+        final EditText amount_editText = view.findViewById(R.id.edit_txt_amount);
+        final EditText type_editText = view.findViewById(R.id.edit_txt_type);
+        final EditText note_editText = view.findViewById(R.id.edit_txt_note);
+
+        Button btn_save = view.findViewById(R.id.btn_save);
+        Button btn_cancel = view.findViewById(R.id.btn_cancel);
+
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = type_editText.getText().toString().trim();
+                String note = note_editText.getText().toString().trim();
+                String amount = amount_editText.getText().toString().trim();
+
+                if (TextUtils.isEmpty(type)) {
+                    type_editText.setError("Field required...");
+                    return;
+                }
+                if (TextUtils.isEmpty(note)) {
+                    note_editText.setError("Field required...");
+                    return;
+                }
+                if (TextUtils.isEmpty(amount)) {
+                    amount_editText.setError("Field required...");
+                }
             }
         });
     }
