@@ -16,11 +16,19 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.DateFormat;
+import java.util.Date;
+
+import brainee.hub.expensemanager.Model.Data;
 
 
 public class DashboardFragment extends Fragment {
@@ -40,7 +48,7 @@ public class DashboardFragment extends Fragment {
 
     //Firebase
     private FirebaseAuth firebaseAuth;
-    private FirebaseFirestore incomeDb,expenseDb;
+    private FirebaseFirestore incomeDb, expenseDb;
 
 
     public DashboardFragment() {
@@ -70,8 +78,6 @@ public class DashboardFragment extends Fragment {
         expenseDb = FirebaseFirestore.getInstance();
 
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        String uid = currentUser.getUid();
-
 
         main_btn = view.findViewById(R.id.main_ft_plus_btn);
         expense_btn = view.findViewById(R.id.expense_ft_btn);
@@ -166,7 +172,28 @@ public class DashboardFragment extends Fragment {
                     amount_editText.setError("Field required...");
                 }
 
-               int ourAmount = Integer.parseInt(amount);
+                int ourAmount = Integer.parseInt(amount);
+                String uid = firebaseAuth.getUid();
+                String date = DateFormat.getDateInstance().format(new Date());
+                Data data = new Data(ourAmount, type, note, amount, date);
+
+                incomeDb.collection("incomeData")
+                        .document(uid)
+                        .set(data)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getContext(), "Data Added...", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getContext(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+
+                dialog.dismiss();
+
             }
         });
 
