@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:backgroundTint="#2196F3"
-                android:src="@drawable/ic_expense"
+                android:src="@drawable/plus_sign"
                 android:visibility="invisible"
                 app:elevation="6dp"
                 app:fabSize="mini"
@@ -159,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:backgroundTint="#4CAF50"
-                android:src="@drawable/ic_income"
+                android:src="@drawable/plus_sign"
                 android:visibility="invisible"
                 app:elevation="6dp"
                 app:fabSize="mini"
@@ -174,7 +174,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="#FF5722"
-            android:src="@drawable/ic_income"
+            android:src="@drawable/plus_sign"
             app:fabSize="normal" />
 
 
