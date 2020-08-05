@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import brainee.hub.expensemanager.Model.Data;
 
@@ -174,11 +175,14 @@ public class DashboardFragment extends Fragment {
 
                 int ourAmount = Integer.parseInt(amount);
                 String uid = firebaseAuth.getUid();
+
+                Random random = new Random();
+                //String id = String.valueOf(random.nextInt());
                 String date = DateFormat.getDateInstance().format(new Date());
                 Data data = new Data(ourAmount, type, note, uid, date);
 
                 incomeDb.collection("incomeData")
-                        .document(uid)
+                        .document(type)
                         .set(data)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
