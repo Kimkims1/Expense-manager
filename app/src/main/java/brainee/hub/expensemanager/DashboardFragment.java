@@ -135,9 +135,80 @@ public class DashboardFragment extends Fragment {
         expense_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                expenseDataInsert();
+            }
+        });
+    }
+
+    private void expenseDataInsert(){
+        AlertDialog.Builder mydialog = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        View view = inflater.inflate(R.layout.custom_layout_data_insert, null);
+        mydialog.setView(view);
+        final AlertDialog dialog = mydialog.create();
+
+        final EditText amount_editText = view.findViewById(R.id.edit_txt_amount);
+        final EditText type_editText = view.findViewById(R.id.edit_txt_type);
+        final EditText note_editText = view.findViewById(R.id.edit_txt_note);
+
+        Button btn_save = view.findViewById(R.id.btn_save);
+        Button btn_cancel = view.findViewById(R.id.btn_cancel);
+
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String type = type_editText.getText().toString().trim();
+                String note = note_editText.getText().toString().trim();
+                String amount = amount_editText.getText().toString().trim();
+
+                if (TextUtils.isEmpty(type)) {
+                    type_editText.setError("Field required...");
+                    return;
+                }
+                if (TextUtils.isEmpty(note)) {
+                    note_editText.setError("Field required...");
+                    return;
+                }
+                if (TextUtils.isEmpty(amount)) {
+                    amount_editText.setError("Field required...");
+                }
+
+                int ourAmount = Integer.parseInt(amount);
+                String uid = firebaseAuth.getUid();
+
+                Random random = new Random();
+                //String id = String.valueOf(random.nextInt());
+                String date = DateFormat.getDateInstance().format(new Date());
+                Data data = new Data(ourAmount, type, note, uid, date);
+
+                expenseDb.collection("expenseData")
+                        .document(type)
+                        .set(data)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getContext(), "Data Added...", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getContext(), "Error: " + task.getException(), Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+
+
+                dialog.dismiss();
 
             }
         });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     private void incomeDataInsert() {
