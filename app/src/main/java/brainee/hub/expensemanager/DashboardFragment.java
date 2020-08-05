@@ -176,5 +176,7 @@ public class DashboardFragment extends Fragment {
                 dialog.dismiss();
             }
         });
+
+        dialog.show();
     }
 }
