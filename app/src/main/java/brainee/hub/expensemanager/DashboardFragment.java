@@ -178,7 +178,7 @@ public class DashboardFragment extends Fragment {
                 Data data = new Data(ourAmount, type, note, amount, date);
 
                 incomeDb.collection("incomeData")
-                        .document(uid)
+                        .document("incomeData/First")
                         .set(data)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -186,7 +186,7 @@ public class DashboardFragment extends Fragment {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(getContext(), "Data Added...", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(getContext(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Error: " + task.getException(), Toast.LENGTH_LONG).show();
                                 }
                             }
                         });
