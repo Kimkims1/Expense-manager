@@ -175,10 +175,10 @@ public class DashboardFragment extends Fragment {
                 int ourAmount = Integer.parseInt(amount);
                 String uid = firebaseAuth.getUid();
                 String date = DateFormat.getDateInstance().format(new Date());
-                Data data = new Data(ourAmount, type, note, amount, date);
+                Data data = new Data(ourAmount, type, note, uid, date);
 
                 incomeDb.collection("incomeData")
-                        .document("incomeData/First")
+                        .document(uid)
                         .set(data)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
