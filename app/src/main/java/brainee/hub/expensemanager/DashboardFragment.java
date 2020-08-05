@@ -25,7 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DashboardFragment extends Fragment {
 
-    //Flaoting btn
+    //Floating btn
     private FloatingActionButton income_btn;
     private FloatingActionButton expense_btn;
     private FloatingActionButton main_btn;
