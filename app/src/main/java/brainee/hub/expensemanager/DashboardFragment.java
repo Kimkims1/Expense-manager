@@ -40,7 +40,8 @@ public class DashboardFragment extends Fragment {
 
     //Firebase
     private FirebaseAuth firebaseAuth;
-    private FirebaseFirestore firestore;
+    private FirebaseFirestore incomeDb,expenseDb;
+
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -65,9 +66,12 @@ public class DashboardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        firestore = FirebaseFirestore.getInstance();
+        incomeDb = FirebaseFirestore.getInstance();
+        expenseDb = FirebaseFirestore.getInstance();
 
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        String uid = currentUser.getUid();
+
 
         main_btn = view.findViewById(R.id.main_ft_plus_btn);
         expense_btn = view.findViewById(R.id.expense_ft_btn);
@@ -113,11 +117,11 @@ public class DashboardFragment extends Fragment {
     }
 
     private void addData() {
-
         income_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                incomeDataInsert();
             }
         });
 
@@ -134,7 +138,7 @@ public class DashboardFragment extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View view = inflater.inflate(R.layout.custom_layout_data_insert, null);
         mydialog.setView(view);
-        AlertDialog dialog = mydialog.create();
+        final AlertDialog dialog = mydialog.create();
 
         final EditText amount_editText = view.findViewById(R.id.edit_txt_amount);
         final EditText type_editText = view.findViewById(R.id.edit_txt_type);
@@ -163,7 +167,13 @@ public class DashboardFragment extends Fragment {
                 }
 
                int ourAmount = Integer.parseInt(amount);
-                
+            }
+        });
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
     }
