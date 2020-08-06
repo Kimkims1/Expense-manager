@@ -248,7 +248,7 @@ public class DashboardFragment extends Fragment {
                 String uid = firebaseAuth.getUid();
 
                 Random random = new Random();
-                //String id = String.valueOf(random.nextInt());
+                String id = String.valueOf(random.nextInt());
                 String date = DateFormat.getDateInstance().format(new Date());
                 Data data = new Data(ourAmount, type, note, uid, date);
 
